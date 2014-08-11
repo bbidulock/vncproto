@@ -1,6 +1,6 @@
 AC_PREREQ([2.69])
-AC_INIT([VncProto], [1.3.1], [https://github.com/bbidulock/VncProto/issues], [vncproto])
-AC_REVISION([1.3.1])
+AC_INIT([VncProto], [1.1], [https://github.com/bbidulock/VncProto/issues], [vncproto])
+AC_REVISION([1.1])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 AM_MAINTAINER_MODE
 
