@@ -8,26 +8,20 @@
 <book id="saver">
 
 <bookinfo>
-   <title>X11 Screen Saver Extension</title>
+   <title>X11 VNC Extension</title>
    <subtitle>MIT X Consortium Proposed Standard</subtitle>
    <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
    <releaseinfo>Version 1.0</releaseinfo>
    <authorgroup>
      <author>
-      <firstname>Jim</firstname><surname>Fulton</surname>
-      <affiliation><orgname>Network Computing Devices, Inc</orgname></affiliation>
-     </author>
-     <author>
-      <firstname>Keith</firstname><surname>Packard</surname>
-      <affiliation><orgname>
-X Consortium, Laboratory for Computer Science, Massachusetts Institute of Technology
-      </orgname></affiliation>
+      <firstname>Brian</firstname><surname>Bidulock</surname>
+      <affiliation><orgname>OpenSS7 Corporation</orgname></affiliation>
      </author>
    </authorgroup>
 
-   <copyright><year>1992</year>
-     <holder>Massachusetts Institute of Technology</holder>
-     <holder>Network Computing Devices, Inc</holder>
+   <copyright><year>2002-2005</year>
+     <holder>RealVNC Limited</holder>
+     <holder>OpenSS7 Copration</holder>
    </copyright>
 
 
@@ -35,8 +29,8 @@ X Consortium, Laboratory for Computer Science, Massachusetts Institute of Techno
 <para>
 Permission to use, copy, modify, and distribute this documentation for any
 purpose and without fee is hereby granted, provided that the above copyright
-notice and this permission notice appear in all copies.  MIT and
-Network Computing Devices, Inc. make no
+notice and this permission notice appear in all copies.  RealVNC Limited and
+OpenSS7 Corporation make no
 representations about the suitability for any purpose of the information in
 this document.  This documentation is provided "as is" without express or
 implied warranty.
@@ -48,22 +42,53 @@ implied warranty.
 <chapter id='Introduction'>
 <title>Introduction</title>
 <para>
-The X Window System provides support for changing the image on a display screen
-after a user-settable period of inactivity to avoid burning the cathode ray
-tube phosphors.  However, no interfaces are provided for the user to control
-the image that is drawn.  This extension allows an external "screen saver"
-client to detect when the alternate image is to be displayed and to provide the
-graphics.
+Virtual Network Computing (VNC) is a remote display system that allows you to
+view and interact with a virtual desktop environment that is running on
+another computer on the network.  Using VNC, you can run graphical
+applications on a remote machine and send on the the display from these
+applications to your local machine.  VNC is platform-independent and supports
+a wide variety of operating systems and architectures as both servers and
+clients.
 </para>
 <para>
-Current X server implementations typically provide at least one form of
-"screen saver" image.  Historically, this has been a copy of the X logo
-drawn against the root background pattern.  However, many users have asked
-for the mechanism to allow them to write screen saver programs that provide
-capabilities similar to those provided by other window systems.  In
-particular, such users often wish to be able to display corporate logos,
-instructions on how to reactivate the screen, and automatic screen-locking
-utilities.  This extension provides a means for writing such clients.
+TigerVNC is a high-speed version of VNC based on the RealVNC 4 and X.org code
+bases.  TigerVNC started as a next-generation development effort for TightVNC
+on Unix and Linux platforms, bit it split from its parent project in early
+2009 so that TightVNC could focus on windows platforms.  TigerVNC supports a
+variant of Tight encoding that is greatly accelerated by the use of
+libjpeg-turbo JPEG codec.
+</para>
+<para>
+The VNC extension for the X Window System was developed by RealVNC Limited
+between 2002 and 2005.  The extension formed part of the original RealVNC 4
+code base and has been used unmodified by VNC derivatives since then.  The
+original VNC extension name was "VNC", but in the TigerVNC code is currenly
+"VNC-EXTENSION".
+</para>
+<para>
+The X Window System does not directly provide support for VNC.  Unlike normal
+XDMCP connections where the X Server executes on the local machine and the
+display manager connects clients on the remote machine, VNC runs the X Server
+and clients on the remote machine and the viewer (an X Server of its own)
+on the local machine communicates with the remote host using the VNC protocol.
+This presents a unique problem in that the viewer's cut buffers are distinct
+from the server's cut buffers.  The VNC protocol must be used to pass the
+viewer cut buffer to the server cut buffer and vise versa.  The VNC extension
+provides a mechanism for passing cut buffers between the viewer to the server.
+</para>
+<para>
+The X Window System does not directly provide support for sharing of input
+devices.  The VNC protocol provides the ability for remote participants to
+share control of the pointer and keyboard, or not, depending on thier
+preferences and access permissions.  The VNC extension provides a mechanism
+for controlling the behaviour of clients in this respect.
+</para>
+<para>
+The X Window System provides mechanism for multiple clients to be authorized
+and to connect to the X server using various transport protocols.  However, it
+provides no mechanism for providing access control to multiple X servers
+participating in the session.  The VNC extension provides a mechanism for
+controlling the behaviour of remote VNC viewer connections in this respect.
 </para>
 </chapter>
 
